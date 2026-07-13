@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0f9f8f">
+    <meta name="description" content="짧은 순간을 기억하고 맞히는 모바일 기억력 미니게임">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Memory Snap">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Memory Snap</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+    <link rel="stylesheet" href="styles.css?v=20260713-26">
+  </head>
+  <body class="is-home">
+    <main class="game-shell">
+      <section class="topbar" aria-label="게임 상태">
+        <div>
+          <p class="eyebrow">Memory Snap</p>
+          <h1>순간 카드 기억</h1>
+        </div>
+        <div class="topbar-side">
+          <div class="account-control">
+            <button id="gameAuthButton" class="text-button account-button" type="button">로그인/회원가입</button>
+            <div class="account-menu" hidden>
+              <div>
+                <span>USER ID</span>
+                <strong data-account-id>-</strong>
+              </div>
+              <div>
+                <span>코인</span>
+                <strong><b data-account-coins>0</b>개</strong>
+              </div>
+              <button class="secondary-button account-logout-button" type="button">로그아웃</button>
+            </div>
+          </div>
+          <div class="stats" aria-live="polite">
+            <div>
+              <span>라운드</span>
+              <strong id="round">1</strong>
+            </div>
+            <div>
+              <span>연속</span>
+              <strong id="streak">0</strong>
+            </div>
+            <div>
+              <span>최고 라운드</span>
+              <strong id="bestRound">0</strong>
+            </div>
+            <div>
+              <span>코인</span>
+              <strong id="coinCount">0</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="homeScreen" class="home-screen" aria-label="초기 화면">
+        <div class="home-topline">
+          <strong class="home-logo">MEMORY SNAP</strong>
+          <div class="home-actions">
+            <button id="settingsButton" class="text-button" type="button">설정</button>
+            <span class="coin-pill" aria-label="보유 코인">
+              <span class="coin-icon" aria-hidden="true"></span>
+              <b id="homeCoinCount">0</b>코인
+            </span>
+            <div class="account-control">
+              <button id="authButton" class="text-button account-button" type="button">로그인/회원가입</button>
+              <div class="account-menu" hidden>
+                <div>
+                  <span>USER ID</span>
+                  <strong data-account-id>-</strong>
+                </div>
+                <div>
+                  <span>코인</span>
+                  <strong><b data-account-coins>0</b>개</strong>
+                </div>
+                <button class="secondary-button account-logout-button" type="button">로그아웃</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-grid">
+          <article id="cardModeButton" class="mode-card" tabindex="0" role="button" aria-pressed="false">
+            <span class="mode-icon" aria-hidden="true">🃏</span>
+            <span>
+              <strong>카드 위치 기억</strong>
+              <small>잠깐 본 카드 위치를 떠올려 정답을 고르세요.</small>
+            </span>
+            <span class="mode-record">
+              <span>최고 라운드 <b id="cardBestRound">0</b></span>
+            </span>
+            <button class="mode-play-button" type="button" data-mode="card">플레이</button>
+          </article>
+
+          <article id="sequenceModeButton" class="mode-card" tabindex="0" role="button" aria-pressed="false">
+            <span class="mode-icon" aria-hidden="true">✨</span>
+            <span>
+              <strong>빛나는 순서 기억</strong>
+              <small>반짝인 순서를 기억해서 그대로 따라 누르는 모드.</small>
+            </span>
+            <span class="mode-record">
+              <span>최고 라운드 <b id="sequenceBestRound">0</b></span>
+            </span>
+            <button class="mode-play-button" type="button" data-mode="sequence">플레이</button>
+          </article>
+
+          <article id="missingModeButton" class="mode-card" tabindex="0" role="button" aria-pressed="false">
+            <span class="mode-icon" aria-hidden="true">🔎</span>
+            <span>
+              <strong>사라진 물건 찾기</strong>
+              <small>장면을 보고 사라진 물건을 맞히는 관찰 기억 모드.</small>
+            </span>
+            <span class="mode-record">
+              <span>최고 라운드 <b id="missingBestRound">0</b></span>
+            </span>
+            <button class="mode-play-button" type="button" data-mode="missing">플레이</button>
+          </article>
+        </div>
+
+        <section class="home-records" aria-label="내 기록">
+          <div class="home-records-header">
+            <strong>내 기록</strong>
+            <span>로그인하면 기록과 코인이 저장돼요</span>
+          </div>
+          <div class="record-grid">
+            <div>
+              <span>카드</span>
+              <strong><b id="homeCardBestRound">0</b>R</strong>
+            </div>
+            <div>
+              <span>순서</span>
+              <strong><b id="homeSequenceBestRound">0</b>R</strong>
+            </div>
+            <div>
+              <span>물건</span>
+              <strong><b id="homeMissingBestRound">0</b>R</strong>
+            </div>
+            <div>
+              <span>코인</span>
+              <strong><b id="homeRecordCoins">0</b>개</strong>
+            </div>
+          </div>
+        </section>
+
+        <div id="modePreview" class="mode-preview" aria-live="polite">
+          <div id="modePreviewContent" class="mode-preview-content">
+            <p>모드를 선택하면 플레이 미리보기가 표시됩니다.</p>
+          </div>
+        </div>
+      </section>
+      <section id="modeSelect" class="mode-select" aria-label="게임 모드 선택" hidden></section>
+
+      <section id="gameStage" class="stage" aria-label="카드 기억 게임" hidden>
+        <div id="readyOverlay" class="ready-overlay" aria-hidden="true">
+          <div>
+            <span id="readyRound">1라운드</span>
+            <strong id="readyText">3</strong>
+          </div>
+        </div>
+
+        <div id="failOverlay" class="fail-overlay" aria-hidden="true">
+          <div class="fail-panel">
+            <strong>실패ㅠㅠ</strong>
+            <p id="failMessage">정답을 놓쳤어요.</p>
+            <div class="fail-summary" aria-label="라운드 결과">
+              <div>
+                <span>이번 기록</span>
+                <b id="resultRound">1라운드</b>
+              </div>
+              <div>
+                <span>최고 기록</span>
+                <b id="resultBestRound">0라운드</b>
+              </div>
+              <div>
+                <span>연속 정답</span>
+                <b id="resultStreak">0회</b>
+              </div>
+              <div>
+                <span>보유 코인</span>
+                <b id="resultCoins">0개</b>
+              </div>
+            </div>
+            <p id="continueHint" class="continue-hint">코인 2개를 쓰면 이어갈 수 있어요.</p>
+            <div class="fail-actions">
+              <button id="homeButton" class="secondary-button" type="button">처음으로</button>
+              <button id="retryButton" class="secondary-button" type="button">다시 도전(1라운드부터)</button>
+              <button id="continueButton" class="primary-button" type="button">코인 2개로 이어하기</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-stage-header">
+          <strong>MEMORY SNAP</strong>
+          <button id="exitGameButton" class="text-button exit-game-button" type="button">처음으로</button>
+        </div>
+
+        <div class="game-status-strip" aria-label="게임 진행 상태">
+          <span>라운드 <b id="stageRound">1</b></span>
+          <span>최고 <b id="stageBestRound">0</b>R</span>
+          <span>코인 <b id="stageCoinCount">0</b></span>
+        </div>
+
+        <div class="prompt-row">
+          <div>
+            <p id="phaseLabel" class="phase-label">준비</p>
+            <h2 id="question">카드 위치를 외울 준비가 됐나요?</h2>
+          </div>
+          <div class="timer" aria-label="상태">
+            <span id="timerValue">준비</span>
+          </div>
+        </div>
+
+        <div class="time-limit" aria-label="제한시간">
+          <span id="timeLimit">제한시간 : 3.2초</span>
+          <span id="themeLabel">테마 : 과일</span>
+        </div>
+
+        <p id="missionHint" class="mission-hint">카드가 뒤집히면 정답 카드를 선택하세요.</p>
+
+        <div id="board" class="board" aria-label="카드판"></div>
+
+        <div class="controls">
+          <button id="startButton" class="primary-button" type="button" hidden>시작</button>
+        </div>
+      </section>
+
+      <div id="authModal" class="modal" aria-hidden="true" hidden>
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+          <button id="authCloseButton" class="modal-close" type="button" aria-label="닫기">×</button>
+          <p class="phase-label">계정</p>
+          <h2 id="authTitle">로그인</h2>
+          <p id="authDescription">계정별로 코인과 최고기록이 저장됩니다.</p>
+          <div class="auth-form">
+            <label for="authUserId">
+              <span>USER ID</span>
+              <input id="authUserId" type="text" autocomplete="username" placeholder="예: player01" maxlength="16">
+            </label>
+            <label for="authPassword">
+              <span>비밀번호</span>
+              <input id="authPassword" type="password" autocomplete="current-password" placeholder="4자 이상">
+            </label>
+            <p id="authStatus" class="auth-status" aria-live="polite"></p>
+          </div>
+          <div id="accountSummary" class="account-summary" hidden>
+            <div>
+              <span>USER ID</span>
+              <strong id="accountUserId">-</strong>
+            </div>
+            <div>
+              <span>보유 코인</span>
+              <strong><b id="accountCoins">0</b>개</strong>
+            </div>
+          </div>
+          <div class="auth-actions">
+            <button id="loginButton" class="primary-button" type="button">로그인</button>
+            <button id="signupButton" class="secondary-button" type="button">회원가입으로 전환</button>
+            <p id="anonymousNotice" class="anonymous-notice">로그인하지 않아도 플레이할 수 있지만 기록과 코인은 저장되지 않습니다.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js?v=20260713-26"></script>
+  </body>
+</html>

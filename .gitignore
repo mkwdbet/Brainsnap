@@ -1,0 +1,19 @@
+node_modules/
+www/
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+*.log
+server.out.log
+server.err.log
+dev-server.out.log
+dev-server.err.log
+.agents/
+.codex/
+.git_broken_backup/
+memorysnap앱초기버전/
+server/data/
+미니게임 AWS 비밀키.txt
+aws_backend/*.zip
+aws_backend/lambda-env.json

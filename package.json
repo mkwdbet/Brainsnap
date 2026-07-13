@@ -1,0 +1,19 @@
+{
+  "name": "memory-snap",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Memory Snap mobile memory mini game",
+  "scripts": {
+    "build:app": "powershell -ExecutionPolicy Bypass -File scripts/build-app.ps1",
+    "dev": "node scripts/dev-server.js",
+    "cap:dev": "powershell -ExecutionPolicy Bypass -File scripts/sync-dev.ps1",
+    "cap:prod": "powershell -ExecutionPolicy Bypass -File scripts/sync-prod.ps1",
+    "cap:sync": "npm run build:app && npx cap sync android",
+    "cap:open": "npx cap open android"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3"
+  }
+}

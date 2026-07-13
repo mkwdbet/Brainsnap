@@ -1,0 +1,10 @@
+﻿{
+    "appId":  "com.memorysnap.app",
+    "appName":  "Memory Snap",
+    "webDir":  "www",
+    "server":  {
+                   "url":  "http://10.234.77.170:5173",
+                   "cleartext":  true,
+                   "androidScheme":  "http"
+               }
+}
