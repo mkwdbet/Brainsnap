@@ -95,19 +95,20 @@ time.
 1. Start the local dev server:
 
 ```powershell
-npm run dev
+npm.cmd run dev
 ```
 
-Current local network URL:
+The dev APK points to the PC's current LAN/Wi-Fi IP automatically when you run
+`npm.cmd run cap:dev`. You can check the current IP with:
 
-```text
-http://10.234.77.170:5173
+```powershell
+ipconfig
 ```
 
 2. Build a dev APK that points to that URL:
 
 ```powershell
-npm run cap:dev
+npm.cmd run cap:dev
 cd android
 $env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"
 $env:Path = "$env:JAVA_HOME\bin;$env:Path"

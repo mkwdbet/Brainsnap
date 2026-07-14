@@ -1,10 +1,11 @@
-const CACHE_NAME = "memory-snap-v20260713-26";
+const CACHE_NAME = "memory-snap-v20260714-01";
 const APP_SHELL = [
   "/",
   "/index.html",
-  "/styles.css?v=20260713-26",
-  "/app.js?v=20260713-26",
+  "/styles.css?v=20260714-01",
+  "/app.js?v=20260714-01",
   "/manifest.webmanifest",
+  "/privacy.html",
   "/assets/room-bg.png",
   "/assets/icons/icon-192.png",
   "/assets/icons/icon-512.png",

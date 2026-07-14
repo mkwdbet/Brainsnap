@@ -1,5 +1,10 @@
 node_modules/
 www/
+android-sdk/
+jdk21/
+.gradle-home/
+commandlinetools-win.zip
+jdk21.zip
 android/.gradle/
 android/app/build/
 android/build/

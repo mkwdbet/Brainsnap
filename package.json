@@ -9,7 +9,8 @@
     "cap:dev": "powershell -ExecutionPolicy Bypass -File scripts/sync-dev.ps1",
     "cap:prod": "powershell -ExecutionPolicy Bypass -File scripts/sync-prod.ps1",
     "cap:sync": "npm run build:app && npx cap sync android",
-    "cap:open": "npx cap open android"
+    "cap:open": "npx cap open android",
+    "apk:debug": "powershell -ExecutionPolicy Bypass -File scripts/build-debug-apk.ps1"
   },
   "devDependencies": {
     "@capacitor/android": "^7.4.3",

@@ -4,7 +4,27 @@ $root = Split-Path -Parent $PSScriptRoot
 $serverUrl = $env:CAP_SERVER_URL
 
 if (-not $serverUrl) {
-  $serverUrl = "http://10.234.77.170:5173"
+  $activeIp = $null
+  $ipconfigBlocks = (ipconfig) -join "`n" -split "(\r?\n){2,}"
+
+  foreach ($block in $ipconfigBlocks) {
+    $candidateIp = $null
+
+    if ($block -match "IPv4 Address[^\r\n]*:\s*([0-9.]+)") {
+      $candidateIp = $Matches[1]
+    }
+
+    if ($candidateIp -and $block -match "Default Gateway[^\r\n]*:\s*([0-9.]+)") {
+      $activeIp = $candidateIp
+      break
+    }
+  }
+
+  if (-not $activeIp) {
+    throw "Could not detect an active LAN IP. Set CAP_SERVER_URL manually, for example: `$env:CAP_SERVER_URL = 'http://192.168.0.10:5173'"
+  }
+
+  $serverUrl = "http://${activeIp}:5173"
 }
 
 $config = [ordered]@{
@@ -23,8 +43,8 @@ Set-Content -LiteralPath (Join-Path $root "capacitor.config.json") -Value $json 
 
 Push-Location $root
 try {
-  npm run build:app
-  npx cap sync android
+  npm.cmd run build:app
+  npx.cmd cap sync android
 }
 finally {
   Pop-Location

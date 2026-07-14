@@ -16,8 +16,8 @@ Set-Content -LiteralPath (Join-Path $root "capacitor.config.json") -Value $json 
 
 Push-Location $root
 try {
-  npm run build:app
-  npx cap sync android
+  npm.cmd run build:app
+  npx.cmd cap sync android
 }
 finally {
   Pop-Location
