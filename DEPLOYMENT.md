@@ -9,8 +9,11 @@ Use Cloudflare Pages for the public web/PWA launch.
 - Framework preset: None
 - Build command: `npm run build:web`
 - Build output directory: `dist`
+- Deploy command: `npx wrangler deploy --assets dist`
 - Root directory: repository root
 - Production branch: `main`
+
+The Worker compatibility date and asset directory are pinned in `wrangler.jsonc`.
 
 ### Files Served
 
