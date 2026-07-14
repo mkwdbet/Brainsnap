@@ -33,12 +33,15 @@ memory game, brain training, concentration, recall, puzzle, casual game
 
 https://memorysnap.org
 
+## Developer Contact Email
+
+mkwdbet@gmail.com
+
 ## Privacy Policy URL
 
 https://memorysnap.org/privacy.html
 
 ## Notes Before Submission
 
-- Replace the privacy policy contact section with the real developer email.
 - Capture screenshots after final UI cleanup.
 - Confirm whether login/account sync is production-ready before advertising account sync heavily.

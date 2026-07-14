@@ -36,7 +36,7 @@ other user data. Keeping the web/PWA version is useful because it gives us:
 - App icon: available in `assets/icons/`
 - Screenshots: still needed from phone
 - Privacy policy URL: `https://memorysnap.org/privacy.html`
-- Developer contact email: still needed
+- Developer contact email: `mkwdbet@gmail.com`
 - Data safety form: still needed
 - Content rating questionnaire: still needed
 - Closed testing testers: still needed
