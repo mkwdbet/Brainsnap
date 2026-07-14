@@ -2548,7 +2548,7 @@ h2 {
     width: 100%;
     min-height: 100dvh;
     height: 100dvh;
-    padding: calc(env(safe-area-inset-top) + 14px) 12px calc(env(safe-area-inset-bottom) + 10px);
+    padding: calc(env(safe-area-inset-top) + 10px) 12px calc(env(safe-area-inset-bottom) + 4px);
     overflow: hidden;
   }
 
@@ -2578,7 +2578,7 @@ h2 {
     min-height: 0;
     height: 100%;
     max-height: 100%;
-    padding: 4px 0 0;
+    padding: 0;
     border: 0;
     border-radius: 0;
     background: transparent;
@@ -2587,7 +2587,7 @@ h2 {
   }
 
   body.is-playing-home .game-stage-header {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
   body.is-playing-home .game-stage-header strong {
@@ -2602,8 +2602,8 @@ h2 {
   }
 
   body.is-playing-home .game-status-strip {
-    min-height: 54px;
-    margin-bottom: 10px;
+    min-height: 50px;
+    margin-bottom: 6px;
     gap: 8px;
   }
 
@@ -2620,7 +2620,7 @@ h2 {
   body.is-playing-home .prompt-row {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   body.is-playing-home .phase-label {
@@ -2642,7 +2642,7 @@ h2 {
 
   body.is-playing-home .time-limit {
     min-height: 42px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     padding: 0 12px;
     border-radius: 14px;
   }
@@ -2653,7 +2653,7 @@ h2 {
 
   body.is-playing-home .mission-hint {
     min-height: 40px;
-    margin: 0 0 10px;
+    margin: 0 0 6px;
     padding: 10px 12px;
     border-radius: 14px;
     font-size: 0.9rem;
@@ -2666,7 +2666,8 @@ h2 {
     min-height: 0;
     height: 100%;
     gap: clamp(7px, 2.1vw, 10px);
-    align-content: center;
+    align-content: stretch;
+    justify-content: stretch;
     overflow: hidden;
   }
 
