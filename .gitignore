@@ -1,5 +1,6 @@
 node_modules/
 www/
+dist/
 android-sdk/
 jdk21/
 .gradle-home/

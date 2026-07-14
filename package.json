@@ -4,6 +4,7 @@
   "private": true,
   "description": "Memory Snap mobile memory mini game",
   "scripts": {
+    "build:web": "node scripts/build-web.js",
     "build:app": "powershell -ExecutionPolicy Bypass -File scripts/build-app.ps1",
     "dev": "node scripts/dev-server.js",
     "cap:dev": "powershell -ExecutionPolicy Bypass -File scripts/sync-dev.ps1",

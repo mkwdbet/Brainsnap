@@ -7,8 +7,8 @@ Use Cloudflare Pages for the public web/PWA launch.
 ### Cloudflare Pages Settings
 
 - Framework preset: None
-- Build command: leave empty
-- Build output directory: `/`
+- Build command: `npm run build:web`
+- Build output directory: `dist`
 - Root directory: repository root
 - Production branch: `main`
 
