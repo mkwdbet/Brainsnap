@@ -202,6 +202,19 @@ h1 {
   font-weight: 900;
 }
 
+.home-brand {
+  display: grid;
+  gap: 8px;
+}
+
+.home-tagline {
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .home-actions {
   display: flex;
   align-items: center;
@@ -1356,6 +1369,16 @@ h2 {
     overflow-wrap: anywhere;
   }
 
+  .home-brand {
+    gap: 5px;
+  }
+
+  .home-tagline {
+    max-width: 330px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
   .coin-icon {
     width: 18px;
     height: 18px;
@@ -1696,6 +1719,16 @@ h2 {
     font-size: clamp(1.8rem, 9vw, 2.65rem);
     line-height: 0.92;
     letter-spacing: 0;
+  }
+
+  .home-brand {
+    gap: 6px;
+  }
+
+  .home-tagline {
+    max-width: 360px;
+    font-size: 0.82rem;
+    line-height: 1.3;
   }
 
   .home-actions {
