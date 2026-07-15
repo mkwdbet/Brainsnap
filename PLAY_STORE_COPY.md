@@ -41,6 +41,24 @@ mkwdbet@gmail.com
 
 https://memorysnap.org/privacy.html
 
+## Screenshot Plan
+
+Use portrait phone screenshots. Recommended order:
+
+1. Home screen with the three modes visible
+2. Card position memory gameplay
+3. Sequence memory gameplay
+4. Missing object gameplay
+5. Result or continue screen showing records and coins
+
+## Feature Graphic Direction
+
+Use a clean 1024 x 500 graphic with:
+
+- Title: `Memory Snap`
+- Subtitle: `짧고 빠른 기억력 챌린지`
+- Visuals: card tiles, sparkle sequence dots, and object-search items
+
 ## Notes Before Submission
 
 - Capture screenshots after final UI cleanup.
