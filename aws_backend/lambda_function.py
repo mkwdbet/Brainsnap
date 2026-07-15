@@ -8,7 +8,6 @@ import time
 from decimal import Decimal
 
 import boto3
-from boto3.dynamodb.conditions import Key
 
 
 USERS_TABLE = os.environ.get("USERS_TABLE", "MemorySnapUsers")
@@ -212,5 +211,7 @@ def lambda_handler(event, context):
             return handle_progress(session, parse_body(event))
 
         return response(404, {"error": "존재하지 않는 API입니다."})
+    except json.JSONDecodeError:
+        return response(400, {"error": "요청 형식이 올바르지 않습니다."})
     except Exception:
         return response(500, {"error": "서버 오류가 발생했습니다."})

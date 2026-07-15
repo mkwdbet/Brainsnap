@@ -32,8 +32,8 @@ logs in, the app sends account and progress data to the backend API.
 
 - Data is transmitted over HTTPS.
 - Passwords are sent to the backend for authentication. The local Node backend
-  hashes passwords before storage. Confirm the production AWS backend behavior
-  before final Play submission.
+  and production AWS Lambda backend hash passwords with PBKDF2-HMAC-SHA256
+  before storage.
 - Users can request privacy-related support by email:
   `mkwdbet@gmail.com`
 
@@ -60,5 +60,5 @@ by the current web app code.
 ## Store Form Risk Notes
 
 - Because login and saved progress exist, do not answer as "no data collected."
-- If account sync is not production-ready, consider disabling or hiding login
-  before Play submission to simplify the data safety form.
+- Login and account sync should remain enabled for launch, so make sure the Play
+  Console data safety answers disclose collected user IDs and gameplay progress.
