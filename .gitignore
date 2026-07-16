@@ -17,6 +17,7 @@ dev-server.out.log
 dev-server.err.log
 .agents/
 .codex/
+.superpowers/
 .git_broken_backup/
 memorysnap앱초기버전/
 server/data/

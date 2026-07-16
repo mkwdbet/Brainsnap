@@ -1202,6 +1202,91 @@ h2 {
   font-size: 1.08rem;
 }
 
+.settings-panel {
+  width: min(430px, 100%);
+}
+
+.settings-list {
+  display: grid;
+  gap: 10px;
+}
+
+.settings-row,
+.settings-link {
+  position: relative;
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.settings-row strong,
+.settings-link strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.98rem;
+}
+
+.settings-row small,
+.settings-link small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.settings-link b {
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+}
+
+.settings-row input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle-switch {
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  background: #cbd5e1;
+  transition: background 160ms ease;
+}
+
+.toggle-switch::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 3px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 7px rgba(15, 23, 42, 0.2);
+  transition: transform 160ms ease;
+}
+
+.settings-row input:checked + .toggle-switch {
+  background: var(--accent);
+}
+
+.settings-row input:checked + .toggle-switch::after {
+  transform: translateX(20px);
+}
+
+.settings-row:focus-within,
+.settings-link:focus-visible {
+  outline: 3px solid rgba(15, 159, 143, 0.16);
+  border-color: var(--accent);
+}
+
 .auth-status {
   min-height: 20px;
   color: var(--accent-dark);

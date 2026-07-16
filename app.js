@@ -3,6 +3,8 @@ const COUNTDOWN_STEP_MS = 600;
 const RESULT_DELAY_MS = 1200;
 const API_BASE_URL = "https://v4w3klaudj.execute-api.ap-northeast-2.amazonaws.com/api";
 const AUTH_TOKEN_KEY = "memorySnapAuthToken";
+const SOUND_ENABLED_KEY = "memorySnapSoundEnabled";
+const VIBRATION_ENABLED_KEY = "memorySnapVibrationEnabled";
 
 const themes = [
   {
@@ -80,6 +82,10 @@ const homeScreen = document.querySelector("#homeScreen");
 const modeSelect = document.querySelector("#modeSelect");
 const gameStage = document.querySelector("#gameStage");
 const settingsButton = document.querySelector("#settingsButton");
+const settingsModal = document.querySelector("#settingsModal");
+const settingsCloseButton = document.querySelector("#settingsCloseButton");
+const soundToggle = document.querySelector("#soundToggle");
+const vibrationToggle = document.querySelector("#vibrationToggle");
 const authButton = document.querySelector("#authButton");
 const gameAuthButton = document.querySelector("#gameAuthButton");
 const accountMenus = document.querySelectorAll(".account-menu");
@@ -197,10 +203,18 @@ const game = {
   authView: "login",
   authMode: localStorage.getItem("memorySnapAuthMode") === "member" ? "member" : "",
   authToken: localStorage.getItem(AUTH_TOKEN_KEY) || "",
-  currentUserId: localStorage.getItem("memorySnapUserId") || ""
+  currentUserId: localStorage.getItem("memorySnapUserId") || "",
+  soundEnabled: localStorage.getItem(SOUND_ENABLED_KEY) !== "false",
+  vibrationEnabled: localStorage.getItem(VIBRATION_ENABLED_KEY) !== "false"
 };
 
-settingsButton.addEventListener("click", () => alert("설정은 다음 단계에서 연결할게요."));
+settingsButton.addEventListener("click", showSettingsModal);
+settingsCloseButton.addEventListener("click", hideSettingsModal);
+settingsModal.addEventListener("click", (event) => {
+  if (event.target === settingsModal) hideSettingsModal();
+});
+soundToggle.addEventListener("change", () => updateFeedbackSetting("sound", soundToggle.checked));
+vibrationToggle.addEventListener("change", () => updateFeedbackSetting("vibration", vibrationToggle.checked));
 authButton.addEventListener("click", handleAccountButtonClick);
 gameAuthButton.addEventListener("click", handleAccountButtonClick);
 accountLogoutButtons.forEach((button) => {
@@ -218,6 +232,12 @@ authModal.addEventListener("click", (event) => {
 document.addEventListener("click", (event) => {
   if (event.target.closest(".account-control")) return;
   hideAccountMenus();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  hideAccountMenus();
+  hideAuthModal();
+  hideSettingsModal();
 });
 authPasswordInput.addEventListener("keydown", (event) => {
   if (game.authView === "account") return;
@@ -263,6 +283,7 @@ updateStats();
 updateModeRecords();
 updateHomeModeState();
 updateContinueButton();
+syncSettingsControls();
 initAuthSession();
 registerServiceWorker();
 
@@ -1198,6 +1219,36 @@ function hideAuthModal() {
   authModal.setAttribute("aria-hidden", "true");
 }
 
+function showSettingsModal() {
+  syncSettingsControls();
+  settingsModal.hidden = false;
+  settingsModal.classList.add("is-visible");
+  settingsModal.setAttribute("aria-hidden", "false");
+  setTimeout(() => soundToggle.focus(), 0);
+}
+
+function hideSettingsModal() {
+  settingsModal.classList.remove("is-visible");
+  settingsModal.hidden = true;
+  settingsModal.setAttribute("aria-hidden", "true");
+}
+
+function syncSettingsControls() {
+  soundToggle.checked = game.soundEnabled;
+  vibrationToggle.checked = game.vibrationEnabled;
+}
+
+function updateFeedbackSetting(type, enabled) {
+  if (type === "sound") {
+    game.soundEnabled = enabled;
+    localStorage.setItem(SOUND_ENABLED_KEY, String(enabled));
+    return;
+  }
+
+  game.vibrationEnabled = enabled;
+  localStorage.setItem(VIBRATION_ENABLED_KEY, String(enabled));
+}
+
 function toggleAccountMenu(button) {
   const menu = button.closest(".account-control")?.querySelector(".account-menu");
   if (!menu) return;
@@ -1416,6 +1467,8 @@ function shuffle(list) {
 }
 
 function playFeedback(type) {
+  if (!game.soundEnabled) return;
+
   try {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     if (!AudioContext) return;
@@ -1439,6 +1492,8 @@ function playFeedback(type) {
 }
 
 function playToneFeedback(frequency) {
+  if (!game.soundEnabled) return;
+
   try {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     if (!AudioContext) return;
@@ -1467,7 +1522,7 @@ function playTone(context, frequency, delay, duration, volume, type) {
 }
 
 function vibrate(pattern) {
-  if (navigator.vibrate) {
+  if (game.vibrationEnabled && navigator.vibrate) {
     navigator.vibrate(pattern);
   }
 }

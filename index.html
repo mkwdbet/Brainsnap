@@ -12,7 +12,7 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-    <link rel="stylesheet" href="styles.css?v=20260715-01">
+    <link rel="stylesheet" href="styles.css?v=20260716-01">
   </head>
   <body class="is-home">
     <main class="game-shell">
@@ -266,11 +266,56 @@
         </div>
       </div>
 
+      <div id="settingsModal" class="modal" aria-hidden="true" hidden>
+        <div class="modal-panel settings-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+          <button id="settingsCloseButton" class="modal-close" type="button" aria-label="닫기">×</button>
+          <p class="phase-label">설정</p>
+          <h2 id="settingsTitle">게임 설정</h2>
+          <p>플레이 피드백과 계정 관련 안내를 관리합니다.</p>
+
+          <div class="settings-list">
+            <label class="settings-row" for="soundToggle">
+              <span>
+                <strong>소리</strong>
+                <small>정답과 실패 효과음을 재생합니다.</small>
+              </span>
+              <input id="soundToggle" type="checkbox" role="switch">
+              <span class="toggle-switch" aria-hidden="true"></span>
+            </label>
+
+            <label class="settings-row" for="vibrationToggle">
+              <span>
+                <strong>진동</strong>
+                <small>지원되는 기기에서 짧은 터치 피드백을 줍니다.</small>
+              </span>
+              <input id="vibrationToggle" type="checkbox" role="switch">
+              <span class="toggle-switch" aria-hidden="true"></span>
+            </label>
+
+            <a class="settings-link" href="privacy.html">
+              <span>
+                <strong>개인정보처리방침</strong>
+                <small>수집 데이터와 문의 방법을 확인합니다.</small>
+              </span>
+              <b>열기</b>
+            </a>
+
+            <a class="settings-link" href="mailto:mkwdbet@gmail.com?subject=Memory%20Snap%20account%20deletion%20request">
+              <span>
+                <strong>계정 삭제 요청</strong>
+                <small>USER ID를 적어서 보내면 삭제를 도와드립니다.</small>
+              </span>
+              <b>메일</b>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <footer class="legal-links">
         <a href="privacy.html">개인정보처리방침</a>
       </footer>
     </main>
 
-    <script src="app.js?v=20260715-01"></script>
+    <script src="app.js?v=20260716-01"></script>
   </body>
 </html>
