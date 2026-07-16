@@ -6,6 +6,7 @@
 - Privacy policy: `https://memorysnap.org/privacy.html`
 - Fallback Worker URL: `https://brainsnap.mkwdbet.workers.dev`
 - Android debug APK builds locally with `npm.cmd run apk:debug`
+- Android release AAB builds locally with `npm.cmd run aab:release`
 
 ## Is A Website Required For App Release?
 
@@ -25,7 +26,7 @@ other user data. Keeping the web/PWA version is useful because it gives us:
 1. Finalize public website and privacy policy.
 2. Create Google Play developer account.
 3. Prepare Play Console listing.
-4. Build release-ready Android artifact.
+4. Build release-ready Android artifact. Done: `android\app\build\outputs\bundle\release\app-release.aab`
 5. Start closed testing as soon as the developer account is ready.
 
 ## Required Before Google Play Submission
@@ -40,6 +41,7 @@ other user data. Keeping the web/PWA version is useful because it gives us:
 - Data safety form: draft available in `PLAY_STORE_DATA_SAFETY_DRAFT.md`
 - Content rating questionnaire: still needed
 - Closed testing testers: still needed
+- Release signing key backup: required before uploading production builds
 
 ## Google Play Closed Testing Note
 

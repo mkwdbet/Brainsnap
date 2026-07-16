@@ -71,6 +71,31 @@ Debug APK output:
 android\app\build\outputs\apk\debug\app-debug.apk
 ```
 
+## Build Release AAB For Google Play
+
+Google Play uses the Android App Bundle format for release uploads.
+
+```powershell
+npm.cmd run aab:release
+```
+
+Release AAB output:
+
+```text
+android\app\build\outputs\bundle\release\app-release.aab
+```
+
+The first release build creates local signing files:
+
+```text
+android\app\memorysnap-release.keystore
+android\keystore.properties
+```
+
+These files are intentionally ignored by Git. Back them up somewhere private and
+durable. Losing them can prevent future app updates from using the same upload
+key.
+
 ## Open In Android Studio
 
 ```powershell
