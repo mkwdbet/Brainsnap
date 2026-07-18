@@ -16,6 +16,7 @@ const checks = [
   ["vibration preference key", app.includes("memorySnapVibrationEnabled")],
   ["settings modal styles", styles.includes(".settings-list")],
   ["toggle switch styles", styles.includes(".toggle-switch")],
+  ["mobile launch polish overrides", styles.includes("launch-ui-polish")],
 ];
 
 const missing = checks.filter(([, passed]) => !passed).map(([name]) => name);

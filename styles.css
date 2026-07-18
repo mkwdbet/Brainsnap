@@ -2840,3 +2840,354 @@ h2 {
     padding-block: 8px;
   }
 }
+
+/* launch-ui-polish: compact phone-first refinements for store-readiness */
+@media (max-width: 720px) {
+  .game-shell {
+    width: min(100%, 460px);
+    padding: max(54px, calc(env(safe-area-inset-top) + 30px)) 12px max(12px, env(safe-area-inset-bottom));
+  }
+
+  body.is-home:not(.is-playing-home) .game-shell {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.is-home:not(.is-playing-home) .game-shell {
+    padding-top: max(64px, calc(env(safe-area-inset-top) + 36px)) !important;
+  }
+
+  .home-screen {
+    gap: 18px;
+    align-self: start;
+  }
+
+  .legal-links {
+    margin-top: auto;
+    align-self: end;
+    width: 100%;
+    padding-top: 18px;
+    padding-bottom: 8px;
+  }
+
+  .home-topline {
+    gap: 11px;
+  }
+
+  .home-logo {
+    font-size: clamp(1.62rem, 8.1vw, 2.24rem);
+    line-height: 0.96;
+  }
+
+  .home-tagline {
+    max-width: 300px;
+    font-size: 0.76rem;
+    line-height: 1.28;
+  }
+
+  .home-actions {
+    grid-template-columns: minmax(66px, 0.8fr) minmax(92px, 1fr) minmax(104px, 1.2fr);
+    gap: 6px;
+  }
+
+  .home-actions .text-button,
+  .home-actions .coin-pill {
+    min-height: 34px;
+    padding: 0 9px;
+    border-color: rgba(24, 33, 47, 0.1);
+    font-size: 0.76rem;
+  }
+
+  .home-actions .account-button {
+    min-width: 0;
+  }
+
+  .coin-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .mode-grid {
+    gap: 12px;
+  }
+
+  .mode-card {
+    min-height: 106px;
+    grid-template-columns: 40px minmax(0, 1fr) 72px;
+    grid-template-areas:
+      "icon title play"
+      "icon record play";
+    gap: 7px 10px;
+    padding: 12px 10px;
+    box-shadow: 0 7px 18px rgba(27, 38, 57, 0.07);
+  }
+
+  .mode-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.16rem;
+  }
+
+  .mode-card strong {
+    margin-bottom: 0;
+    font-size: 0.94rem;
+    line-height: 1.15;
+  }
+
+  .mode-card small {
+    margin-top: 2px;
+    font-size: 0.66rem;
+  }
+
+  .mode-record span {
+    font-size: 0.65rem;
+  }
+
+  .mode-record b {
+    font-size: 0.72rem;
+  }
+
+  .mode-play-button {
+    min-height: 36px;
+    padding: 0 8px;
+    font-size: 0.74rem;
+  }
+
+  .home-records {
+    gap: 10px;
+    padding: 12px;
+    box-shadow: 0 7px 18px rgba(27, 38, 57, 0.05);
+  }
+
+  .home-records-header strong {
+    font-size: 0.92rem;
+  }
+
+  .home-records-header span {
+    font-size: 0.64rem;
+  }
+
+  .record-grid {
+    gap: 5px;
+  }
+
+  .record-grid div {
+    min-height: 56px;
+    padding: 7px 4px;
+  }
+
+  .record-grid span {
+    font-size: 0.63rem;
+  }
+
+  .record-grid strong {
+    font-size: 0.92rem;
+  }
+
+  .modal {
+    padding: 12px;
+  }
+
+  .modal-panel {
+    gap: 10px;
+    padding: 18px;
+  }
+
+  .modal-panel h2 {
+    font-size: clamp(1.42rem, 6.5vw, 1.9rem);
+  }
+
+  .settings-row,
+  .settings-link {
+    min-height: 58px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .game-shell {
+    padding: max(48px, calc(env(safe-area-inset-top) + 28px)) 10px max(10px, env(safe-area-inset-bottom));
+  }
+
+  body.is-home:not(.is-playing-home) .game-shell {
+    padding-top: max(58px, calc(env(safe-area-inset-top) + 34px)) !important;
+  }
+
+  .home-screen {
+    gap: 15px;
+  }
+
+  .home-logo {
+    font-size: clamp(1.42rem, 7.7vw, 1.92rem);
+  }
+
+  .home-actions {
+    grid-template-columns: minmax(58px, 0.72fr) minmax(78px, 0.92fr) minmax(96px, 1.24fr);
+    gap: 5px;
+  }
+
+  .home-actions .text-button,
+  .home-actions .coin-pill {
+    min-height: 32px;
+    padding: 0 7px;
+    font-size: 0.7rem;
+  }
+
+  .mode-card {
+    min-height: 98px;
+    grid-template-columns: 36px minmax(0, 1fr) 66px;
+    gap: 6px 8px;
+    padding: 10px 9px;
+  }
+
+  .mode-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.06rem;
+  }
+
+  .mode-card strong {
+    font-size: 0.88rem;
+  }
+
+  .mode-card small,
+  .mode-record span {
+    font-size: 0.61rem;
+  }
+
+  .mode-play-button {
+    min-height: 34px;
+    font-size: 0.68rem;
+  }
+
+  .home-records {
+    padding: 11px 10px;
+  }
+
+  .record-grid div {
+    min-height: 52px;
+  }
+}
+
+@media (max-width: 720px) {
+  body.is-playing-home .game-shell {
+    padding: max(38px, calc(env(safe-area-inset-top) + 22px)) 10px calc(env(safe-area-inset-bottom) + 4px);
+  }
+
+  body.is-playing-home .mode-preview .stage {
+    grid-template-rows: auto auto auto auto auto minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  body.is-playing-home .game-stage-header {
+    min-height: 30px;
+    margin-bottom: 2px;
+  }
+
+  body.is-playing-home .game-stage-header strong {
+    font-size: clamp(1rem, 4.7vw, 1.32rem);
+  }
+
+  body.is-playing-home .exit-game-button {
+    min-height: 34px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+  }
+
+  body.is-playing-home .game-status-strip {
+    min-height: 42px;
+    margin-bottom: 3px;
+    gap: 6px;
+  }
+
+  body.is-playing-home .game-status-strip span {
+    min-height: 40px;
+    padding: 6px 5px;
+    border-radius: 10px;
+    font-size: 0.66rem;
+  }
+
+  body.is-playing-home .game-status-strip b {
+    font-size: 0.9rem;
+  }
+
+  body.is-playing-home .prompt-row {
+    gap: 7px;
+    margin-bottom: 3px;
+  }
+
+  body.is-playing-home .phase-label {
+    margin-bottom: 1px;
+    font-size: 0.64rem;
+  }
+
+  body.is-playing-home #question {
+    font-size: clamp(1.04rem, 5.7vw, 1.42rem);
+    line-height: 1.1;
+  }
+
+  body.is-playing-home .timer {
+    width: 54px;
+    height: 54px;
+    border-width: 6px;
+    font-size: 0.9rem;
+  }
+
+  body.is-playing-home .time-limit {
+    min-height: 34px;
+    margin-bottom: 3px;
+    padding: 0 10px;
+    border-radius: 10px;
+  }
+
+  body.is-playing-home .time-limit span {
+    font-size: 0.74rem;
+  }
+
+  body.is-playing-home .mission-hint {
+    min-height: 34px;
+    margin: 0 0 3px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+  }
+
+  body.is-playing-home .board {
+    gap: clamp(6px, 1.7vw, 8px);
+  }
+
+  body.is-playing-home .card-emoji {
+    font-size: clamp(2.35rem, 13vw, 4.7rem);
+  }
+
+  body.is-playing-home .card-name {
+    bottom: 7px;
+    font-size: clamp(0.66rem, 2.9vw, 0.82rem);
+  }
+}
+
+@media (max-width: 390px) {
+  body.is-playing-home .timer {
+    width: 48px;
+    height: 48px;
+    border-width: 5px;
+    font-size: 0.82rem;
+  }
+
+  body.is-playing-home #question {
+    font-size: clamp(0.98rem, 5.2vw, 1.28rem);
+  }
+
+  body.is-playing-home .game-status-strip span {
+    min-height: 36px;
+    font-size: 0.61rem;
+  }
+
+  body.is-playing-home .mission-hint {
+    min-height: 30px;
+    padding: 7px 8px;
+    font-size: 0.7rem;
+  }
+}
