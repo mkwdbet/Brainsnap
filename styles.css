@@ -2887,7 +2887,7 @@ h2 {
   }
 
   .home-actions {
-    grid-template-columns: minmax(66px, 0.8fr) minmax(92px, 1fr) minmax(104px, 1.2fr);
+    grid-template-columns: minmax(54px, 0.66fr) minmax(92px, 1fr) minmax(104px, 1.26fr);
     gap: 6px;
   }
 
@@ -2901,6 +2901,14 @@ h2 {
 
   .home-actions .account-button {
     min-width: 0;
+  }
+
+  .home-actions #settingsButton {
+    justify-self: start;
+    min-width: 54px;
+    min-height: 30px;
+    padding: 0 8px;
+    font-size: 0.68rem;
   }
 
   .coin-icon {
@@ -3023,7 +3031,7 @@ h2 {
   }
 
   .home-actions {
-    grid-template-columns: minmax(58px, 0.72fr) minmax(78px, 0.92fr) minmax(96px, 1.24fr);
+    grid-template-columns: minmax(50px, 0.64fr) minmax(78px, 0.96fr) minmax(96px, 1.28fr);
     gap: 5px;
   }
 
@@ -3032,6 +3040,13 @@ h2 {
     min-height: 32px;
     padding: 0 7px;
     font-size: 0.7rem;
+  }
+
+  .home-actions #settingsButton {
+    min-width: 50px;
+    min-height: 28px;
+    padding: 0 7px;
+    font-size: 0.64rem;
   }
 
   .mode-card {
@@ -3189,5 +3204,223 @@ h2 {
     min-height: 30px;
     padding: 7px 8px;
     font-size: 0.7rem;
+  }
+}
+
+/* play-screen-polish: keep in-game UI clear of phone chrome and tighter on small screens */
+@media (max-width: 720px) {
+  body.is-playing-home .game-shell {
+    padding: max(54px, calc(env(safe-area-inset-top) + 30px)) 10px max(10px, env(safe-area-inset-bottom)) !important;
+  }
+
+  body.is-playing-home .mode-preview .stage {
+    grid-template-rows: auto auto auto auto auto minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  body.is-playing-home .game-stage-header {
+    min-height: 34px;
+    margin-bottom: 1px;
+  }
+
+  body.is-playing-home .game-stage-header strong {
+    max-width: 62%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: clamp(1.08rem, 5vw, 1.42rem);
+    line-height: 1;
+  }
+
+  body.is-playing-home .exit-game-button {
+    min-width: 68px;
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+
+  body.is-playing-home .game-status-strip {
+    min-height: 40px;
+    gap: 6px;
+    margin-bottom: 1px;
+  }
+
+  body.is-playing-home .game-status-strip span {
+    min-height: 38px;
+    padding: 6px 5px;
+    border-radius: 8px;
+    font-size: 0.62rem;
+  }
+
+  body.is-playing-home .game-status-strip b {
+    font-size: 0.88rem;
+  }
+
+  body.is-playing-home .prompt-row {
+    gap: 8px;
+    margin-bottom: 1px;
+  }
+
+  body.is-playing-home .phase-label {
+    font-size: 0.62rem;
+  }
+
+  body.is-playing-home #question {
+    font-size: clamp(1.02rem, 5.2vw, 1.36rem);
+  }
+
+  body.is-playing-home .timer {
+    width: 50px;
+    height: 50px;
+    border-width: 5px;
+    font-size: 0.84rem;
+  }
+
+  body.is-playing-home .time-limit {
+    min-height: 32px;
+    padding: 0 9px;
+    margin-bottom: 1px;
+    border-radius: 8px;
+  }
+
+  body.is-playing-home .time-limit span {
+    font-size: 0.7rem;
+  }
+
+  body.is-playing-home .mission-hint {
+    min-height: 32px;
+    padding: 7px 9px;
+    margin-bottom: 2px;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  body.is-playing-home .board {
+    gap: clamp(7px, 2vw, 10px);
+  }
+
+  body.is-playing-home .board:not(.missing-board):not(.sequence-board) {
+    grid-auto-rows: minmax(0, 1fr);
+  }
+
+  body.is-playing-home .sequence-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 360px);
+    justify-self: center;
+    align-self: center;
+  }
+
+  body.is-playing-home .sequence-pad {
+    gap: 4px;
+    border-radius: 8px;
+  }
+
+  body.is-playing-home .sequence-pad span {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  body.is-playing-home .sequence-pad strong {
+    font-size: 0.78rem;
+  }
+
+  body.is-playing-home .missing-board {
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  body.is-playing-home .missing-scene {
+    min-height: 0;
+    align-self: stretch;
+    border-radius: 8px;
+  }
+
+  body.is-playing-home .missing-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  body.is-playing-home .missing-option {
+    min-height: 56px;
+    padding: 6px 4px;
+    border-radius: 8px;
+    font-size: 0.68rem;
+  }
+
+  body.is-playing-home .fail-overlay {
+    padding: max(58px, calc(env(safe-area-inset-top) + 34px)) 14px max(14px, env(safe-area-inset-bottom));
+  }
+
+  body.is-playing-home .fail-panel {
+    width: min(100%, 360px);
+    max-height: 100%;
+    gap: 10px;
+    overflow: auto;
+  }
+
+  body.is-playing-home .fail-panel strong {
+    font-size: clamp(2.35rem, 12vw, 3.7rem);
+  }
+
+  body.is-playing-home .fail-panel p {
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
+  body.is-playing-home .fail-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  body.is-playing-home .fail-summary div {
+    min-height: 58px;
+    padding: 8px 6px;
+  }
+
+  body.is-playing-home .fail-summary span {
+    font-size: 0.66rem;
+  }
+
+  body.is-playing-home .fail-summary b {
+    font-size: 0.94rem;
+  }
+
+  body.is-playing-home .fail-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 7px;
+  }
+
+  body.is-playing-home .fail-actions button {
+    width: 100%;
+    min-width: 0;
+    min-height: 40px;
+    padding: 0 10px;
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 390px) {
+  body.is-playing-home .game-shell {
+    padding-top: max(50px, calc(env(safe-area-inset-top) + 28px)) !important;
+  }
+
+  body.is-playing-home .game-stage-header strong {
+    font-size: clamp(1rem, 4.9vw, 1.22rem);
+  }
+
+  body.is-playing-home .game-status-strip span {
+    font-size: 0.58rem;
+  }
+
+  body.is-playing-home .timer {
+    width: 46px;
+    height: 46px;
+    font-size: 0.78rem;
+  }
+
+  body.is-playing-home .mission-hint {
+    font-size: 0.68rem;
   }
 }
