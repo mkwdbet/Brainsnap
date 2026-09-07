@@ -3,7 +3,6 @@
     "appName":  "Memory Snap",
     "webDir":  "www",
     "server":  {
-                   "url":  "https://memorysnap.org",
                    "androidScheme":  "https"
                }
 }

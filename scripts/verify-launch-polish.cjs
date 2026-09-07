@@ -11,12 +11,20 @@ const checks = [
   ["vibration toggle", index.includes('id="vibrationToggle"')],
   ["privacy link in settings", index.includes('href="privacy.html"')],
   ["account deletion mail link", index.includes("mailto:mkwdbet@gmail.com")],
+  ["ranking modal markup", index.includes('id="rankingModal"')],
+  ["home ranking preview markup", index.includes('id="homeRankingPreview"')],
+  ["result ranking markup", index.includes('id="resultRanking"')],
+  ["auth tabs markup", index.includes('id="authLoginTab"') && index.includes('id="authSignupTab"')],
   ["settings modal query", app.includes('document.querySelector("#settingsModal")')],
+  ["ranking modal query", app.includes('document.querySelector("#rankingModal")')],
+  ["ranking API call", app.includes('apiRequest("/rankings"')],
+  ["result ranking updater", app.includes("updateResultRanking")],
+  ["home ranking renderer", app.includes("renderHomeRankingPreview")],
   ["sound preference key", app.includes("memorySnapSoundEnabled")],
   ["vibration preference key", app.includes("memorySnapVibrationEnabled")],
   ["settings modal styles", styles.includes(".settings-list")],
   ["toggle switch styles", styles.includes(".toggle-switch")],
-  ["mobile launch polish overrides", styles.includes("launch-ui-polish")],
+  ["mobile launch polish overrides", styles.includes("mobile-app-layout-20260724")],
 ];
 
 const missing = checks.filter(([, passed]) => !passed).map(([name]) => name);

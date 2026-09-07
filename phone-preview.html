@@ -1,0 +1,199 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memory Snap Phone Preview</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172033;
+        --muted: #667085;
+        --line: #d8e1ec;
+        --phone: #111827;
+        --accent: #10a896;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+        gap: 28px;
+        align-items: center;
+        padding: 28px;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 18% 16%, rgba(16, 168, 150, 0.13), transparent 34%),
+          linear-gradient(145deg, #f5f8fb, #eef4f8 52%, #f8fbfd);
+        font-family: Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .preview-info {
+        max-width: 340px;
+      }
+
+      .preview-info h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 5vw, 3.6rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .preview-info p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.55;
+      }
+
+      .preview-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .preview-actions a,
+      .preview-actions button {
+        min-height: 42px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.82);
+        font: inherit;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .preview-actions .primary {
+        border-color: transparent;
+        color: #fff;
+        background: var(--accent);
+      }
+
+      .phone-wrap {
+        display: grid;
+        place-items: center;
+        min-width: 0;
+      }
+
+      .phone {
+        position: relative;
+        width: min(430px, calc(100vw - 56px), calc((100vh - 56px) * 0.462));
+        aspect-ratio: 390 / 844;
+        padding: 14px;
+        border-radius: 42px;
+        background: linear-gradient(145deg, #222b3b, #090d14);
+        box-shadow:
+          0 32px 80px rgba(20, 32, 48, 0.26),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+      }
+
+      .phone-screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 30px;
+        background: #f6f9fc;
+      }
+
+      .speaker {
+        position: absolute;
+        z-index: 2;
+        top: 16px;
+        left: 50%;
+        width: 86px;
+        height: 18px;
+        border-radius: 999px;
+        background: #0c111b;
+        transform: translateX(-50%);
+        opacity: 0.95;
+        pointer-events: none;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: #f6f9fc;
+      }
+
+      @media (max-width: 900px) {
+        body {
+          grid-template-columns: 1fr;
+          align-items: start;
+          padding: 18px;
+        }
+
+        .preview-info {
+          max-width: none;
+        }
+
+        .phone {
+          width: min(430px, 100%, calc((100vh - 220px) * 0.462));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="preview-info" aria-label="미리보기 정보">
+      <h1>MEMORY SNAP</h1>
+      <p>PC 브라우저에서 모바일 앱 화면을 바로 확인하는 미리보기입니다.</p>
+      <div class="preview-actions">
+        <button class="primary" type="button" onclick="reloadPreview()">새로고침</button>
+        <a href="index.html" target="_blank" rel="noreferrer">전체화면 열기</a>
+      </div>
+    </section>
+
+    <main class="phone-wrap" aria-label="휴대폰 미리보기">
+      <div class="phone">
+        <div class="speaker" aria-hidden="true"></div>
+        <div class="phone-screen">
+          <iframe title="Memory Snap app preview" src="about:blank" data-src="index.html?preview=phone&v=20260907-09"></iframe>
+        </div>
+      </div>
+    </main>
+    <script>
+      async function clearPreviewCache() {
+        if ("serviceWorker" in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map((registration) => registration.unregister()));
+        }
+        if ("caches" in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((key) => caches.delete(key)));
+        }
+      }
+
+      async function reloadPreview() {
+        await clearPreviewCache();
+        const frame = document.querySelector("iframe");
+        frame.src = `${frame.dataset.src}&cache=${Date.now()}`;
+      }
+
+      (async () => {
+        await reloadPreview();
+      })();
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

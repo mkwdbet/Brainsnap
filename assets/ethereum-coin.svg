@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Ethereum coin">
+  <defs>
+    <radialGradient id="coin" cx="35%" cy="28%" r="72%">
+      <stop offset="0%" stop-color="#f7fbff"/>
+      <stop offset="35%" stop-color="#cfd8ff"/>
+      <stop offset="68%" stop-color="#7b8cff"/>
+      <stop offset="100%" stop-color="#4451c7"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".75"/>
+      <stop offset="100%" stop-color="#1f2a91" stop-opacity=".85"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="58" fill="url(#coin)"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="url(#edge)" stroke-width="6"/>
+  <path d="M64 20 38 64l26-12 26 12L64 20Z" fill="#ffffff" opacity=".92"/>
+  <path d="M64 20v32l26 12L64 20Z" fill="#dfe5ff" opacity=".92"/>
+  <path d="M38 70 64 108 90 70 64 84 38 70Z" fill="#ffffff" opacity=".92"/>
+  <path d="M64 84v24l26-38-26 14Z" fill="#dfe5ff" opacity=".92"/>
+</svg>

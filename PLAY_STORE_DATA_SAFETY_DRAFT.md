@@ -5,23 +5,30 @@ console before submitting.
 
 ## App Data Collected
 
-Memory Snap includes optional account functionality. If the user signs up or
-logs in, the app sends account and progress data to the backend API.
+Memory Snap includes optional account functionality. Users can play without an
+account, but login is required for synced coins, saved records, rankings, and
+TOP3 advice messages.
 
 ### Personal Info
 
 - User IDs: collected
-- Purpose: app functionality, account management
-- Required: optional, only for account login and synced progress
-- Shared with third parties: no, except service providers used to host the app/backend
+- Email address: collected only when the user signs in with Google
+- Purpose: app functionality, account management, saved progress, rankings
+- Required: optional, only for account login and synced features
+- Shared with third parties: no sale or advertising sharing. Google sign-in and
+  hosting/backend service providers may process data to provide the service.
 
 ### App Activity
 
 - App interactions / gameplay progress: collected
-- Examples: coins, best rounds, selected game mode progress
-- Purpose: app functionality
-- Required: optional, mainly for logged-in progress sync
-- Shared with third parties: no, except service providers used to host the app/backend
+- Examples: coins, best rounds, selected mode records, ranking position,
+  TOP3 advice message
+- Purpose: app functionality, saved progress, rankings, competition features
+- Required: optional, mainly for logged-in progress sync and rankings
+- Shared with third parties: no sale or advertising sharing. Hosting/backend
+  service providers may process data to provide the service.
+- User-generated TOP3 advice messages can be reported and hidden if
+  inappropriate.
 
 ### Device Or Other IDs
 
@@ -31,19 +38,21 @@ logs in, the app sends account and progress data to the backend API.
 ## Security Practices
 
 - Data is transmitted over HTTPS.
-- Passwords are sent to the backend for authentication. The local Node backend
-  and production AWS Lambda backend hash passwords with PBKDF2-HMAC-SHA256
-  before storage.
+- Passwords are sent to the backend for authentication and are hashed with
+  PBKDF2-HMAC-SHA256 before storage.
+- Google sign-in uses Google ID tokens. The backend verifies the token and uses
+  Google's account subject identifier for account matching.
 - Users can request privacy-related support by email:
   `mkwdbet@gmail.com`
 
 ## Data Deletion
 
-Current privacy policy says deletion requests can be sent by email.
-
-Before production submission, decide whether to add an in-app account deletion
-button or document email-based deletion clearly in the Play Console data safety
-form.
+- In-app account deletion is available from the account screen.
+- Deleting the Memory Snap account removes server-side coins, records, rankings,
+  and TOP3 advice messages.
+- If the user signed in with Google, deleting the Memory Snap game account does
+  not delete the user's Google account.
+- Users can also request support by email: `mkwdbet@gmail.com`
 
 ## Permissions
 
@@ -59,6 +68,7 @@ by the current web app code.
 
 ## Store Form Risk Notes
 
-- Because login and saved progress exist, do not answer as "no data collected."
-- Login and account sync should remain enabled for launch, so make sure the Play
-  Console data safety answers disclose collected user IDs and gameplay progress.
+- Do not answer "no data collected" while login, saved coins, rankings, or TOP3
+  advice messages exist.
+- Disclose user IDs, optional Google email address, gameplay progress, rankings,
+  and user-generated TOP3 advice messages.

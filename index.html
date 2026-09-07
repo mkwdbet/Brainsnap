@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0f9f8f">
-    <meta name="description" content="짧은 순간을 기억하고 맞히는 모바일 기억력 미니게임">
+    <meta name="description" content="순간 기억력으로 겨루는 모바일 미니게임">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Memory Snap">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -12,7 +12,92 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-    <link rel="stylesheet" href="styles.css?v=20260718-05">
+    <link rel="stylesheet" href="styles.css?v=20260907-09">
+    <style>
+      @media (max-width: 720px) {
+        body.is-home:not(.is-playing-home) .game-shell {
+          width: 100% !important;
+          max-width: 100% !important;
+          padding: max(38px, calc(env(safe-area-inset-top) + 20px)) 12px max(10px, env(safe-area-inset-bottom)) !important;
+          overflow: hidden !important;
+        }
+
+        body.is-home:not(.is-playing-home) .home-screen {
+          width: 100% !important;
+          max-width: 100% !important;
+          gap: clamp(8px, 1.3svh, 12px) !important;
+          overflow: hidden !important;
+        }
+
+        body.is-home:not(.is-playing-home) .mode-grid {
+          width: 100% !important;
+          max-width: 100% !important;
+          display: grid !important;
+          grid-template-columns: minmax(0, 1fr) !important;
+          gap: clamp(8px, 1.25svh, 11px) !important;
+          overflow: hidden !important;
+        }
+
+        body.is-home:not(.is-playing-home) .mode-card {
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+          min-height: clamp(92px, 13.4svh, 112px) !important;
+          display: grid !important;
+          grid-template-columns: 40px minmax(0, 1fr) 64px !important;
+          grid-template-rows: auto auto !important;
+          align-items: center !important;
+          gap: 6px 9px !important;
+          padding: clamp(9px, 1.45svh, 12px) !important;
+          overflow: hidden !important;
+        }
+
+        body.is-home:not(.is-playing-home) .mode-icon {
+          grid-row: 1 / 3 !important;
+          width: 40px !important;
+          height: 40px !important;
+          font-size: 1.14rem !important;
+        }
+
+        body.is-home:not(.is-playing-home) .mode-card > span:not(.mode-icon):not(.mode-record) {
+          grid-column: 2 !important;
+          min-width: 0 !important;
+        }
+
+        body.is-home:not(.is-playing-home) .mode-record {
+          grid-column: 2 !important;
+          min-width: 0 !important;
+        }
+
+        body.is-home:not(.is-playing-home) .mode-play-button {
+          grid-column: 3 !important;
+          grid-row: 1 / 3 !important;
+          width: 64px !important;
+          min-width: 0 !important;
+          min-height: 42px !important;
+          justify-self: stretch !important;
+          align-self: center !important;
+          padding: 0 6px !important;
+          font-size: 0.78rem !important;
+        }
+
+        body.is-playing-home .board:not(.missing-board) {
+          align-self: start !important;
+          height: auto !important;
+          gap: 8px !important;
+          align-content: start !important;
+          align-items: start !important;
+          grid-auto-rows: auto !important;
+        }
+
+        body.is-playing-home .card {
+          align-self: start !important;
+          height: auto !important;
+          aspect-ratio: 1 / 1 !important;
+        }
+      }
+    </style>
+    <meta name="google-client-id" content="567640192267-5vguj4mjfri3cku8mr3o3p5odjsmiar5.apps.googleusercontent.com">
   </head>
   <body class="is-home">
     <main class="game-shell">
@@ -61,13 +146,13 @@
         <div class="home-topline">
           <div class="home-brand">
             <strong class="home-logo">MEMORY SNAP</strong>
-            <p class="home-tagline">3가지 기억력 챌린지를 짧고 빠르게 플레이하세요.</p>
+            <p class="home-tagline">순간 기억력으로 겨루는 3가지 미니게임</p>
           </div>
           <div class="home-actions">
             <button id="settingsButton" class="text-button" type="button">설정</button>
             <span class="coin-pill" aria-label="보유 코인">
               <span class="coin-icon" aria-hidden="true"></span>
-              <b id="homeCoinCount">0</b>코인
+              <b id="homeCoinCount">0</b>
             </span>
             <div class="account-control">
               <button id="authButton" class="text-button account-button" type="button">로그인/회원가입</button>
@@ -87,11 +172,11 @@
         </div>
 
         <div class="mode-grid">
-          <article id="cardModeButton" class="mode-card" tabindex="0" role="button" aria-pressed="false">
+          <article id="cardModeButton" class="mode-card" tabindex="0" role="button" aria-label="방금 본 카드 맞히기 선택" aria-pressed="false">
             <span class="mode-icon" aria-hidden="true">🃏</span>
             <span>
-              <strong>카드 위치 기억</strong>
-              <small>잠깐 본 카드 위치를 떠올려 정답을 고르세요.</small>
+              <strong>카드 맞히기</strong>
+              <small>방금 본 카드 위치를 고릅니다.</small>
             </span>
             <span class="mode-record">
               <span>최고 라운드 <b id="cardBestRound">0</b></span>
@@ -99,11 +184,11 @@
             <button class="mode-play-button" type="button" data-mode="card">플레이</button>
           </article>
 
-          <article id="sequenceModeButton" class="mode-card" tabindex="0" role="button" aria-pressed="false">
+          <article id="sequenceModeButton" class="mode-card" tabindex="0" role="button" aria-label="불빛 따라 누르기 선택" aria-pressed="false">
             <span class="mode-icon" aria-hidden="true">✨</span>
             <span>
-              <strong>빛나는 순서 기억</strong>
-              <small>반짝인 순서를 기억해서 그대로 따라 누르는 모드.</small>
+              <strong>불빛 순서</strong>
+              <small>반짝인 순서대로 누릅니다.</small>
             </span>
             <span class="mode-record">
               <span>최고 라운드 <b id="sequenceBestRound">0</b></span>
@@ -111,11 +196,11 @@
             <button class="mode-play-button" type="button" data-mode="sequence">플레이</button>
           </article>
 
-          <article id="missingModeButton" class="mode-card" tabindex="0" role="button" aria-pressed="false">
+          <article id="missingModeButton" class="mode-card" tabindex="0" role="button" aria-label="사라진 물건 찾기 선택" aria-pressed="false">
             <span class="mode-icon" aria-hidden="true">🔎</span>
             <span>
-              <strong>사라진 물건 찾기</strong>
-              <small>장면을 보고 사라진 물건을 맞히는 관찰 기억 모드.</small>
+              <strong>사라진 물건</strong>
+              <small>없어진 물건을 찾아냅니다.</small>
             </span>
             <span class="mode-record">
               <span>최고 라운드 <b id="missingBestRound">0</b></span>
@@ -124,10 +209,13 @@
           </article>
         </div>
 
-        <section class="home-records" aria-label="내 기록">
+        <section class="home-records" aria-label="내 기록과 랭킹">
           <div class="home-records-header">
-            <strong>내 기록</strong>
-            <span>로그인하면 기록과 코인이 저장돼요</span>
+            <div>
+              <strong>내 기록</strong>
+              <span>로그인하면 기록이 랭킹에 반영됩니다.</span>
+            </div>
+            <button id="rankingButton" class="text-button ranking-button" type="button">TOP3 보기</button>
           </div>
           <div class="record-grid">
             <div>
@@ -147,6 +235,37 @@
               <strong><b id="homeRecordCoins">0</b>개</strong>
             </div>
           </div>
+          <p class="coin-help">코인은 이어하기에 사용됩니다. 회원가입, 친구 공유, 첫 조언 작성으로 받을 수 있습니다.</p>
+          <div class="home-ranking-block">
+            <div class="home-ranking-header">
+              <strong>현재 1위</strong>
+              <span>전체 랭킹 보기</span>
+            </div>
+            <div id="homeRankingPreview" class="home-ranking-preview" aria-live="polite">
+              <div>
+                <span>카드 1위</span>
+                <strong id="homeCardLeader">불러오는 중</strong>
+                <small id="homeCardGap">내 기록과 비교 중</small>
+              </div>
+              <div>
+                <span>순서 1위</span>
+                <strong id="homeSequenceLeader">불러오는 중</strong>
+                <small id="homeSequenceGap">내 기록과 비교 중</small>
+              </div>
+              <div>
+                <span>물건 1위</span>
+                <strong id="homeMissingLeader">불러오는 중</strong>
+                <small id="homeMissingGap">내 기록과 비교 중</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-challenge" aria-label="다음 목표">
+          <span>다음 목표</span>
+          <strong id="homeChallengeTitle">오늘은 한 판만 남겨보세요.</strong>
+          <small id="homeChallengeDetail">가장 낮은 기록부터 올리면 전체 기록이 보기 좋아집니다.</small>
+          <button id="inviteShareButton" class="invite-share-button" type="button">카카오톡으로 친구에게 보내기 · 코인 +1</button>
         </section>
 
         <div id="modePreview" class="mode-preview" aria-live="polite">
@@ -167,7 +286,7 @@
 
         <div id="failOverlay" class="fail-overlay" aria-hidden="true">
           <div class="fail-panel">
-            <strong>실패ㅠㅠ</strong>
+            <strong id="failTaunt">아쉽습니다.</strong>
             <p id="failMessage">정답을 놓쳤어요.</p>
             <div class="fail-summary" aria-label="라운드 결과">
               <div>
@@ -187,14 +306,22 @@
                 <b id="resultCoins">0개</b>
               </div>
             </div>
+            <div id="resultRanking" class="result-ranking" aria-live="polite">
+              <span>랭킹 분석</span>
+              <strong id="resultRankingTitle">랭킹 확인 중</strong>
+              <small id="resultRankingDetail">기록을 비교하고 있어요.</small>
+            </div>
             <p id="continueHint" class="continue-hint">코인 2개를 쓰면 이어갈 수 있어요.</p>
             <div class="fail-actions">
+              <button id="storyButton" class="secondary-button story-button" type="button">결과 공유</button>
               <button id="homeButton" class="secondary-button" type="button">처음으로</button>
               <button id="retryButton" class="secondary-button" type="button">다시 도전(1라운드부터)</button>
               <button id="continueButton" class="primary-button" type="button">코인 2개로 이어하기</button>
             </div>
           </div>
         </div>
+
+        <div id="comboSticker" class="combo-sticker" aria-live="polite" aria-hidden="true"></div>
 
         <div class="game-stage-header">
           <strong>MEMORY SNAP</strong>
@@ -207,11 +334,16 @@
           <span>코인 <b id="stageCoinCount">0</b></span>
         </div>
 
+        <div id="stageRankingBar" class="stage-ranking-bar" aria-live="polite">
+          로그인하면 기록이 랭킹에 반영됩니다.
+        </div>
+
         <div class="prompt-row">
           <div>
             <p id="phaseLabel" class="phase-label">준비</p>
-            <h2 id="question">카드 위치를 외울 준비가 됐나요?</h2>
+            <h2 id="question">라운드를 준비하세요.</h2>
           </div>
+          <button id="quickExitGameButton" class="text-button quick-exit-game-button" type="button">처음으로</button>
           <div class="timer" aria-label="상태">
             <span id="timerValue">준비</span>
           </div>
@@ -222,7 +354,7 @@
           <span id="themeLabel">테마 : 과일</span>
         </div>
 
-        <p id="missionHint" class="mission-hint">카드가 뒤집히면 정답 카드를 선택하세요.</p>
+        <p id="missionHint" class="mission-hint">뒤집힌 카드 중 정답 카드를 선택하세요.</p>
 
         <div id="board" class="board" aria-label="카드판"></div>
 
@@ -237,6 +369,10 @@
           <p class="phase-label">계정</p>
           <h2 id="authTitle">로그인</h2>
           <p id="authDescription">계정별로 코인과 최고기록이 저장됩니다.</p>
+          <div class="auth-tabs" role="tablist" aria-label="계정 선택">
+            <button id="authLoginTab" class="auth-tab is-active" type="button" role="tab" aria-selected="true">로그인</button>
+            <button id="authSignupTab" class="auth-tab" type="button" role="tab" aria-selected="false">회원가입</button>
+          </div>
           <div class="auth-form">
             <label for="authUserId">
               <span>USER ID</span>
@@ -246,12 +382,24 @@
               <span>비밀번호</span>
               <input id="authPassword" type="password" autocomplete="current-password" placeholder="4자 이상">
             </label>
+            <div class="auth-divider"><span>또는</span></div>
+            <div id="googleSignInButton" class="google-signin-button"></div>
+            <button id="googleLoginFallback" class="secondary-button google-fallback-button" type="button" hidden>Google로 로그인</button>
+            <p id="googleLoginHint" class="auth-hint" hidden>Google Client ID를 설정하면 Google 로그인을 사용할 수 있어요.</p>
             <p id="authStatus" class="auth-status" aria-live="polite"></p>
           </div>
           <div id="accountSummary" class="account-summary" hidden>
             <div>
               <span>USER ID</span>
               <strong id="accountUserId">-</strong>
+            </div>
+            <div>
+              <span>로그인 방식</span>
+              <strong id="accountProvider">-</strong>
+            </div>
+            <div id="accountEmailRow" hidden>
+              <span>Google 이메일</span>
+              <strong id="accountEmail">-</strong>
             </div>
             <div>
               <span>보유 코인</span>
@@ -261,8 +409,32 @@
           <div class="auth-actions">
             <button id="loginButton" class="primary-button" type="button">로그인</button>
             <button id="signupButton" class="secondary-button" type="button">회원가입으로 전환</button>
+            <button id="deleteAccountButton" class="danger-button" type="button" hidden>계정 삭제</button>
             <p id="anonymousNotice" class="anonymous-notice">로그인하지 않아도 플레이할 수 있지만 기록과 코인은 저장되지 않습니다.</p>
           </div>
+        </div>
+      </div>
+
+      <div id="rankingModal" class="modal" aria-hidden="true" hidden>
+        <div class="modal-panel ranking-panel" role="dialog" aria-modal="true" aria-labelledby="rankingTitle">
+          <button id="rankingCloseButton" class="modal-close" type="button" aria-label="닫기">×</button>
+          <p class="phase-label">랭킹</p>
+          <h2 id="rankingTitle">TOP3의 조언</h2>
+          <p>3위 안에 들면 한 줄 남길 수 있습니다. 부적절한 문구는 신고되거나 삭제될 수 있습니다.</p>
+          <div class="ranking-tabs" role="tablist" aria-label="랭킹 모드">
+            <button class="ranking-tab is-active" type="button" data-ranking-mode="card" role="tab" aria-selected="true">카드</button>
+            <button class="ranking-tab" type="button" data-ranking-mode="sequence" role="tab" aria-selected="false">순서</button>
+            <button class="ranking-tab" type="button" data-ranking-mode="missing" role="tab" aria-selected="false">물건</button>
+          </div>
+          <div id="rankingSummary" class="ranking-summary" aria-live="polite"></div>
+          <ol id="rankingList" class="ranking-list" aria-live="polite"></ol>
+          <div id="rankingAdviceEditor" class="ranking-advice-editor" hidden>
+            <label for="rankingAdviceInput">TOP3 한 줄 조언</label>
+            <textarea id="rankingAdviceInput" maxlength="45" rows="2" placeholder="예: 보고 누르면 됩니다. 그게 안 되시나요?"></textarea>
+            <small>욕설, 개인정보, 광고 문구, 반복 도배는 삭제될 수 있습니다.</small>
+            <button id="saveRankingAdviceButton" class="primary-button" type="button">조언 남기기</button>
+          </div>
+          <p id="rankingStatus" class="auth-status" aria-live="polite"></p>
         </div>
       </div>
 
@@ -300,6 +472,14 @@
               <b>열기</b>
             </a>
 
+            <button id="introReplayButton" class="settings-link settings-button-link" type="button">
+              <span>
+                <strong>앱 소개 다시 보기</strong>
+                <small>처음 실행할 때 나오는 기능 소개를 다시 봅니다.</small>
+              </span>
+              <b>보기</b>
+            </button>
+
             <a class="settings-link" href="mailto:mkwdbet@gmail.com?subject=Memory%20Snap%20account%20deletion%20request">
               <span>
                 <strong>계정 삭제 요청</strong>
@@ -311,11 +491,33 @@
         </div>
       </div>
 
-      <footer class="legal-links">
-        <a href="privacy.html">개인정보처리방침</a>
-      </footer>
+      <div id="introModal" class="tutorial-overlay" aria-hidden="true" hidden>
+        <div class="tutorial-scrim" aria-hidden="true"></div>
+        <section id="introCoach" class="tutorial-card" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introDescription">
+          <div class="tutorial-header">
+            <span id="introStepLabel">1 / 4</span>
+            <button id="introCloseButton" class="tutorial-skip-button" type="button">건너뛰기</button>
+          </div>
+          <h2 id="introTitle">게임 모드를 선택하세요.</h2>
+          <p id="introDescription">카드 위치, 불빛 순서, 사라진 물건 찾기 중 하나를 선택해 바로 플레이할 수 있습니다.</p>
+          <button id="introStartButton" class="primary-button tutorial-next-button" type="button">다음</button>
+        </section>
+      </div>
+
     </main>
 
-    <script src="app.js?v=20260718-05"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer onload="window.dispatchEvent(new Event('memorysnap-google-ready'))"></script>
+    <script src="app.js?v=20260907-09"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

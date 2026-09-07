@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0f9f8f">
     <meta name="description" content="Memory Snap 개인정보처리방침">
     <title>개인정보처리방침 | Memory Snap</title>
-    <link rel="stylesheet" href="styles.css?v=20260715-01">
+    <link rel="stylesheet" href="styles.css?v=20260726-08">
     <style>
       body {
         display: block;
@@ -29,14 +29,9 @@
         box-shadow: var(--shadow);
       }
 
-      .policy-page header {
-        padding: 28px;
-      }
-
+      .policy-page header,
       .policy-section {
-        padding: 22px;
-        display: grid;
-        gap: 10px;
+        padding: 24px;
       }
 
       .policy-page h1,
@@ -65,6 +60,11 @@
         padding-left: 20px;
       }
 
+      .policy-section {
+        display: grid;
+        gap: 10px;
+      }
+
       .policy-actions {
         display: flex;
         justify-content: center;
@@ -88,42 +88,60 @@
       <header>
         <p class="eyebrow">Memory Snap</p>
         <h1>개인정보처리방침</h1>
-        <p>시행일: 2026년 7월 14일</p>
+        <p>시행일: 2026년 7월 25일</p>
       </header>
 
       <section class="policy-section">
         <h2>1. 수집하는 정보</h2>
-        <p>Memory Snap은 계정 기능과 기록 저장 기능을 제공하기 위해 다음 정보를 수집할 수 있습니다.</p>
+        <p>Memory Snap은 선택적 계정 기능, 기록 저장, 랭킹 기능을 제공하기 위해 다음 정보를 처리할 수 있습니다.</p>
         <ul>
-          <li>사용자가 입력한 사용자 ID</li>
-          <li>비밀번호를 직접 저장하지 않고, 인증을 위한 암호화된 비밀번호 정보</li>
-          <li>게임 최고 기록, 코인 수, 진행 데이터</li>
-          <li>서비스 오류 확인을 위한 기본 접속 로그</li>
+          <li>사용자가 입력한 USER ID</li>
+          <li>비밀번호 인증 정보: 비밀번호 원문은 저장하지 않고 해시 처리된 인증 정보만 저장합니다.</li>
+          <li>Google 로그인 정보: Google 계정 식별자, 이메일 주소</li>
+          <li>게임 데이터: 최고 라운드, 코인 수, 연속 정답, 모드별 진행 기록</li>
+          <li>랭킹 데이터: 랭킹에 표시되는 USER ID, 최고 라운드, 코인 수</li>
+          <li>TOP3 조언 문구: TOP3 사용자가 직접 작성한 한 줄 문구</li>
+          <li>서비스 운영에 필요한 기본 접속 로그</li>
         </ul>
       </section>
 
       <section class="policy-section">
         <h2>2. 이용 목적</h2>
-        <p>수집한 정보는 로그인, 계정별 기록 저장, 게임 진행 데이터 동기화, 서비스 안정성 개선을 위해 사용됩니다.</p>
+        <p>수집한 정보는 로그인, 계정별 기록 저장, 코인 및 이어하기 기능, 랭킹 표시, TOP3 조언 표시, 서비스 안정성 개선을 위해 사용됩니다.</p>
       </section>
 
       <section class="policy-section">
-        <h2>3. 제3자 제공</h2>
-        <p>Memory Snap은 법령상 필요한 경우를 제외하고 사용자의 개인정보를 제3자에게 판매하거나 공유하지 않습니다.</p>
+        <h2>3. 공개되는 정보</h2>
+        <p>랭킹 화면에는 USER ID, 최고 라운드, 코인 수, TOP3 조언 문구가 표시될 수 있습니다. Google 이메일 주소는 계정 화면에서 본인에게만 표시되며 랭킹에는 표시하지 않습니다.</p>
       </section>
 
       <section class="policy-section">
-        <h2>4. 보관 및 삭제</h2>
-        <p>계정 정보와 게임 기록은 서비스 제공에 필요한 기간 동안 보관됩니다. 사용자가 삭제를 요청하면 확인 절차 후 합리적인 기간 내 삭제합니다.</p>
+        <h2>4. 제3자 제공</h2>
+        <p>Memory Snap은 법령상 필요한 경우를 제외하고 개인정보를 판매하지 않습니다. 서비스 제공을 위해 Google 로그인, AWS 호스팅 및 데이터 저장 인프라를 사용할 수 있습니다.</p>
       </section>
 
       <section class="policy-section">
-        <h2>5. 아동 개인정보</h2>
+        <h2>5. 보관 및 삭제</h2>
+        <p>계정 정보와 게임 기록은 서비스 제공에 필요한 기간 동안 보관됩니다. 사용자는 앱의 계정 화면에서 게임 계정을 삭제할 수 있습니다. 계정을 삭제하면 Memory Snap 서버의 코인, 기록, 랭킹, TOP3 조언 문구가 삭제됩니다. Google로 로그인한 경우에도 Google 계정 자체는 삭제되지 않습니다.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>6. 계정 삭제 요청</h2>
+        <p>앱을 사용할 수 없는 경우 <a href="mailto:mkwdbet@gmail.com">mkwdbet@gmail.com</a>으로 USER ID와 함께 계정 삭제 요청을 보낼 수 있습니다. 본인 확인 후 Memory Snap 게임 계정의 코인, 기록, 랭킹, TOP3 조언 문구를 삭제합니다.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>7. TOP3 조언 문구</h2>
+        <p>TOP3 조언 문구는 랭킹 화면에 공개될 수 있는 사용자 작성 텍스트입니다. 욕설, 개인정보, 광고, 도배성 문구는 제한되거나 삭제될 수 있으며, 사용자는 부적절한 문구를 신고할 수 있습니다.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>8. 아동 개인정보</h2>
         <p>Memory Snap은 일반 사용자를 대상으로 하는 기억력 미니게임입니다. 만 14세 미만 사용자가 서비스를 이용하는 경우 보호자의 지도가 필요합니다.</p>
       </section>
 
       <section class="policy-section">
-        <h2>6. 문의</h2>
+        <h2>9. 문의</h2>
         <p>개인정보 관련 문의는 <a href="mailto:mkwdbet@gmail.com">mkwdbet@gmail.com</a>으로 접수할 수 있습니다.</p>
       </section>
 

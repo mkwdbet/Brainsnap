@@ -17,7 +17,8 @@
         "dynamodb:PutItem",
         "dynamodb:DeleteItem",
         "dynamodb:UpdateItem",
-        "dynamodb:Query"
+        "dynamodb:Query",
+        "dynamodb:Scan"
       ],
       "Resource": [
         "arn:aws:dynamodb:ap-northeast-2:850141023292:table/MemorySnapUsers",

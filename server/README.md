@@ -1,6 +1,6 @@
 # Memory Snap Local Server
 
-로컬 개발용 계정/코인/최고기록 API입니다.
+로컬 개발용 계정, 코인, 최고기록, 랭킹 API입니다.
 
 ```powershell
 node server/server.js
@@ -12,4 +12,16 @@ node server/server.js
 http://127.0.0.1:8787
 ```
 
-데이터는 `server/data/db.json`에 저장됩니다. 컴퓨터가 꺼지면 서버 접속은 멈추지만, 저장 파일은 남아 있습니다.
+API:
+
+- `POST /api/signup`
+- `POST /api/login`
+- `POST /api/google-login`
+- `GET /api/me`
+- `GET /api/rankings`
+- `POST /api/progress`
+- `POST /api/delete-account`
+- `POST /api/ranking-message`
+- `POST /api/logout`
+
+데이터는 `server/data/db.json`에 저장됩니다. 컴퓨터가 꺼지면 서버 접속은 멈추지만 저장 파일은 남아 있습니다.

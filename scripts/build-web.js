@@ -6,6 +6,7 @@ const outDir = path.join(root, "dist");
 
 const entries = [
   "index.html",
+  "phone-preview.html",
   "styles.css",
   "app.js",
   "manifest.webmanifest",

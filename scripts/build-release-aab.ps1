@@ -22,6 +22,14 @@ if (Test-Path $localJdkRoot) {
 }
 
 if (-not (Get-Command keytool.exe -ErrorAction SilentlyContinue)) {
+  $androidStudioJdk = "C:\Program Files\Android\Android Studio\jbr"
+  if (Test-Path (Join-Path $androidStudioJdk "bin\keytool.exe")) {
+    $env:JAVA_HOME = $androidStudioJdk
+    $env:Path = "$env:JAVA_HOME\bin;$env:Path"
+  }
+}
+
+if (-not (Get-Command keytool.exe -ErrorAction SilentlyContinue)) {
   throw "keytool.exe was not found. Install or configure JDK 21 before building a release AAB."
 }
 
